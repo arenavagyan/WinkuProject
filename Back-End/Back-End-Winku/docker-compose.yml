@@ -1,41 +1,35 @@
-
+version: "3"
 services:
-    frontend:
+    laravel:
         build:
-            context: ./Front-End
+            context: ./docker/php
             dockerfile: Dockerfile
+            args:
+                WWWGROUP: '1000'
+        image: sail-8.0/app
         ports:
-            - "3000:3000"
-        volumes:
-            - ./Front-End:/app
-        command: npm run dev
-
-    services:
-        backend:
-            build:
-                context: .
-                dockerfile: Dockerfile
-            ports:
-                - "8080:80"
-            volumes:
-                - .:/var/www/html
-            networks:
-                - app-network
-
-    networks:
-        app-network:
-            driver: bridge
-
-
-
-
-
-        mysql:
-        image: mysql:latest
-        ports:
-            - "3307:3306"
+            - '80:80'
         environment:
-            MYSQL_ROOT_PASSWORD: rootroot7
-            MYSQL_DATABASE: laravel-api
-            MYSQL_USER: root
-            MYSQL_PASSWORD: rootroot7
+            WWWUSER: 'user'
+            LARAVEL_SAIL: 1
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+        depends_on:
+            - mysql
+    mysql:
+        image: 'mysql:8.0'
+        ports:
+            - '3000:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: 'root'
+            MYSQL_DATABASE: 'laravel'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        networks:
+            - sail
+        healthcheck:
+            test: [ "CMD", "mysqladmin", "ping" ]
+networks:
+    sail:
+        driver: bridge
