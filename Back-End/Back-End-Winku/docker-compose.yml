@@ -1,0 +1,41 @@
+
+services:
+    frontend:
+        build:
+            context: ./Front-End
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./Front-End:/app
+        command: npm run dev
+
+    services:
+        backend:
+            build:
+                context: .
+                dockerfile: Dockerfile
+            ports:
+                - "8080:80"
+            volumes:
+                - .:/var/www/html
+            networks:
+                - app-network
+
+    networks:
+        app-network:
+            driver: bridge
+
+
+
+
+
+        mysql:
+        image: mysql:latest
+        ports:
+            - "3307:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: rootroot7
+            MYSQL_DATABASE: laravel-api
+            MYSQL_USER: root
+            MYSQL_PASSWORD: rootroot7
