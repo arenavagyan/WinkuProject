@@ -17,4 +17,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/image/{uuid}', function ($uuid) {
+    // Fetch the image from the database
+    $image = \App\Models\Image::where('image_uuid', $uuid)->first();
+
+    if (!$image) {
+        abort(404);
+    }
+
+    // Get the image path
+    $path = public_path('image/' . $image->name);
+
+    // Check if the file exists
+    if (!\Illuminate\Support\Facades\File::exists($path)) {
+        abort(404);
+    }
+
+    // Serve the file
+    return response()->file($path);
+});
+
 require __DIR__.'/auth.php';

@@ -18,4 +18,9 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    # Serve static images directly
+    RewriteCond %{REQUEST_URI} ^/image/(.*)$
+    RewriteCond %{DOCUMENT_ROOT}/public/image/%1 -f
+    RewriteRule ^image/(.*)$ public/image/$1 [L]
 </IfModule>

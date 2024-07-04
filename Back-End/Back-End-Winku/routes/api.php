@@ -125,16 +125,7 @@ Route::get('/static/{user_id}/images/{file}', function($user_id,$file) {
     return $response;
 });
 
-Route::get('/images/{image_uuid}', function($image_uuid) {
-    $image = Image::where('image_uuid',$image_uuid)->first()->name;
 
-    $file = File::get(public_path() . "/image/{$image}");
-
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", "image/jpg");
-
-    return $response;
-});
 
 Route::get('/static/{user_id}/cover/{file}', function($user_id,$file) {
     $file = File::get(public_path() . "/image/{$user_id}/cover/{$file}");
@@ -160,7 +151,6 @@ Route::get('users/{user_id}/followers', function($user_id){
     $user = User::find($user_id);
     return $user->follows;
 });
-// Default User Data --GET
 
 Route::get('defaultUser',function (){
     $file = File::get(public_path() . '/image/defaultUserAvatar.jpg');
