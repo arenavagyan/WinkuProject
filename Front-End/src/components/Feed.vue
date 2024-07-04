@@ -131,13 +131,13 @@
 
         <div v-for="(post,index) in posts" :key="index" class="w-full mb-4">
 
-            <div class="" v-if="post.likeCount !== 0">
+            <div v-if="post.viewCount == 0">
                 <Post :userId="post.userId" :postId="post.postId" :userName="post.userName" :publishDate="post.publishDate" :photoUrl="post.photoUrl"
                     :videoUrl="post.videoUrl" :viewCount="post.viewCount" :commentCount="post.commentCount"
                     :likeCount="post.likeCount" :dislikesCount="post.dislikesCount" :description="post.description"
                     :comments="post.comments" />
             </div>
-            <div class="" v-else>
+            <div v-else>
                 <NewPostItem :userId="post.userId" :postId="post.postId" :userName="post.userName" :publishDate="post.publishDate" :photoUrl="post.photoUrl"
                     :videoUrl="post.videoUrl" :viewCount="post.viewCount" :commentCount="post.commentCount"
                     :likeCount="post.likeCount" :dislikesCount="post.dislikesCount" :description="post.description"
@@ -410,8 +410,8 @@ function returnImageUrl(userId,imageName){
 
   const store = usePostStore();
 
-  const {posts} = storeToRefs(store)
-
+  
+  const {posts,userAvatar} = storeToRefs(store)
   const {returnImageUrl,addPost,addImage} = store
   
 </script>

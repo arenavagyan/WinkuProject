@@ -35,7 +35,8 @@
     const coverSection = ref(null)
 
     const user_id = ref(1)
-
+    /*
+    
     function arrayBufferToBase64(buffer) {
         let binary = '';
         const bytes = new Uint8Array(buffer);
@@ -45,6 +46,7 @@
         }
         return window.btoa(binary);
     }
+
 
     function fetchAndConvertUserAvatar(imageName) {
         axios.get(`http://127.0.0.1:8000/api/static/${user_id.value}/avatar/${imageName}`, {
@@ -83,7 +85,7 @@
 
     fetchAndConvertUserAvatar('user-avatar.jpg')
     fetchAndConvertUserCover('cover.jpg')
-    
+    */
     
 </script>
 

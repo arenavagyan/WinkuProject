@@ -4,7 +4,7 @@
     <!-- HEADER -->
 
     <div class="flex post_heading">
-      <img :src="returnAvatar(userId)" alt="" class="user_avatar rounded-full w-9 h-auto m-2">
+      <img :src="returnImageUrl(userId)" alt="" class="user_avatar rounded-full w-9 h-auto m-2">
 
       <div class="w-full">
         <h6 class="user_name w-full text-xs text-cyan-600 ml-2 mt-2">{{props.userName}}</h6>
@@ -155,10 +155,27 @@
   const user = ref([])
   const postId = ref(0)
 
+
+  ///////////////  Pinia ///////////////////////////
+
+  import {usePostStore} from '../stores/PostStore.js'
+  import {storeToRefs} from 'pinia'
+
+  const store = usePostStore();
+
+  
+  const {posts,userAvatar} = storeToRefs(store)
+  const {returnImageUrl} = store
+
+  //////////////////////////////////////////////////
+
+
+
+
   userId.value = props.userId
   postId.value = props.postId
  
-  axios.get(`http://${localhost.value}/api/defaultUser/avatar`)
+  /*axios.get(`http://${localhost.value}/api/defaultUser/avatar`)
   .then(response=> defaultUserAvatar.value = response.data)
   .catch(error => console.log(error))
 
@@ -176,7 +193,6 @@
 
 
     return(`${localhost.value}/api/static/${userId}/avatar`)
-    // else return(`http://${localhost.value}/api/defaultUser/avatar`)
   }
 
 
@@ -208,7 +224,7 @@
     e.target.value=''
   }
 
- 
+ */
 </script>
 
 <style scoped>

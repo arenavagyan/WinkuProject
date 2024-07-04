@@ -35,7 +35,7 @@ const refName = ref(null);
 
 
 nextTick(() => {
-    console.log(refName.value.scrollTo);
+   
     
     refName.value.scrollTop = 1000;
      })

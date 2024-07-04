@@ -9,7 +9,7 @@
             id="friendSearch" @change="onChange">
         <div class="friend_list">
             <div v-for="(friend,index) in friends" :key="index" class="friends">
-                <FriendSmallItem :id="friend" :name="friend.name" :email="friend.email" :url="friend.url" />
+                <FriendSmallItem :id="friend.id" :name="friend.name" :email="friend.email" :indexImage="index"/>
             </div>
         </div>
     </div>
@@ -21,61 +21,18 @@
     import {useFriendsStore} from '../stores/FriendsStore'
     import {storeToRefs} from 'pinia'
 
-/*
-    const friends = [{
-            name: "Bucky Barnes",
-            email: "wintersolder@gmail.com",
-            url: "https://wpkixx.com/html/winku/images/resources/friend-avatar.jpg"
-        },
-        {
-            name: "Sarah Leon",
-            email: "barnes@gmail.com",
-            url: "https://wpkixx.com/html/winku/images/resources/friend-avatar2.jpg"
 
-        },
-        {
-            name: "Jason Borne",
-            email: "jasonb@gmail.com",
-            url: "https://wpkixx.com/html/winku/images/resources/friend-avatar3.jpg"
-        },
-        {
-            name: "Cameron Diaz",
-            email: "jasonb@gmail.com",
-            url: "https://wpkixx.com/html/winku/images/resources/friend-avatar4.jpg"
-        },
-        {
-            name: "Daniel Warber",
-            email: "jasonb@gmail.com",
-            url: "https://wpkixx.com/html/winku/images/resources/friend-avatar5.jpg"
-        },
-        {
-            name: "Andrew",
-            email: "jasonb@gmail.com",
-            url: "https://wpkixx.com/html/winku/images/resources/friend-avatar6.jpg"
-        },
-        {
-            name: "Amy Watson",
-            email: "jasonb@gmail.com",
-            url: "https://wpkixx.com/html/winku/images/resources/friend-avatar7.jpg"
-        },
-        {
-            name: "Daniel Warber",
-            email: "jasonb@gmail.com",
-            url: "https://wpkixx.com/html/winku/images/resources/friend-avatar5.jpg"
-        },
-        {
-            name: "Sarah Leon",
-            email: "barnes@gmail.com",
-            url: "https://wpkixx.com/html/winku/images/resources/friend-avatar10.jpg"
-        } 
-    ];
-*/
+   
+
+
+    const indexImage = ref(0)
 
     const store = useFriendsStore()
 
     const {friends} = storeToRefs(store)
 
-    const {returnImageUrl} = store
+    const {returnAvatarUrl} = store
+
 
     const inputValue = ref('')
 

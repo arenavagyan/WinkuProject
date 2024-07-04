@@ -21,7 +21,6 @@
     import FollowerItem from './FollowerItem.vue'
     
     const followers = ref([])
-    followers.value = [1,4]
    
    
 

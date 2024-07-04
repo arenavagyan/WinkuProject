@@ -4,8 +4,8 @@
     <!-- HEADER -->
 
     <div class="flex">
-      <img :src="returnAvatar(props.userId)" alt=""
-        class="user_avatar rounded-full w-9 h-auto m-2">
+      <!-- <img :src="returnAvatar(props.userId)" alt=""
+        class="user_avatar rounded-full w-9 h-auto m-2"> -->
       <div class="w-full">
         <h6 class="user_name w-full text-xs text-cyan-600 ml-2 mt-2">{{props.userName}}</h6>
         <p class="date text-s ml-2 text-gray-500">Published: {{props.publishDate}}</p>
@@ -19,7 +19,7 @@
       </iframe>
     </div>
     <div v-else class="flex justify-center">
-      <img :src="returnPostImage(props.userId,props.postId)" alt="" class="w-11/12">
+      <!-- <img :src="returnPostImage(props.userId,props.postId)" alt="" class="w-11/12"> -->
     </div>
     <div class="description_box w-full">
       
@@ -88,33 +88,45 @@
 
 
     <!-- COMMENTS -->
-
-    <div class="pt-[1rem]" v-if="props.comments">
+<!--<div class="pt-[1rem]" v-if="props.comments">
       <div v-for="(comment,index) in props.comments" :key="index" class="w-full com">
-        
-        <div v-if="comment.mainComment">
-          <Comment :date="comment.created_at" :userId="comment.userId"
-             :text="comment.text" class="mb-4" />
+        <div v-for="(com,index) in comment" :key="index" class="w-full com">
+
+        <div v-if="com.isMainComment">
+          <Comment :date="com.created_at" :userId="com.userId"
+             :text="com.text" class="mb-4" />
   
   
-          <div v-for="(replyComment,index) in props.comments.repliedCommentIds" :key="index" class="w-full">
+          <div v-for="(replyComment,index) comment.repliedCommentIds" :key="index" class="w-full">
             <div v-for="(comment,index) in props.comments" :key="index">
-              <div v-if="comment.commentId == replyComment">
-                <Comment class="ml-12 mb-4" :date="comment.created_at" :userId="comment.userId"
-                  :text="comment.text" />
+              <div v-for="(com,index) in comment" :key="index" class="w-full com">
+
+              <div v-if="com.commentId == replyComment">
+                <Comment class="ml-12 mb-4" :date="com.created_at" :userId="com.userId" :text="com.text" />
+              </div>
               </div>
             </div>
           </div>
         </div>
   
       </div>
-    </div>
+      </div>
+    </div> 
+    -->
+    
 
     <!-- ADD COMMENTS -->
 
     <div class="w-full flex justify-center items-center p-2">
-      <img src="https://wpkixx.com/html/winku/images/resources/friend-avatar10.jpg" alt=""
-        class="user_avatar rounded-full w-7 h-auto mr-1 mt-2">
+      <div v-if="returnAvatar(props.userId)">
+      <img :src="returnAvatar(props.userId)" alt=""
+        class="user_avatar rounded-full w-7 h-auto mr-1 mt-2"> 
+      </div>
+      <div v-else>
+        <img src="http://localhost:81/api/defaultUser"
+        class="user_avatar rounded-full w-7 h-auto mr-1 mt-2"> 
+
+      </div>
       <form action="" method="post" class="w-full ml-1 mt-2 ">
         <input type="text"
           class="comment_input rounded-sm w-full bg-gray-100 text-ss p-2 placeholder:text-gray-500 focus:outline-none active:outline-none"
@@ -151,32 +163,38 @@
   const postId = ref(0)
   const comment = ref([])
 
+  //  console.log(props.comments);
+
   postId.value = props.postId
- 
+  
 
+
+  /*
+  
   axios.get(`http://${localhost.value}/api/users/${props.userId}`)
-         .then(response => {user.value = response.data})
-         .catch(error => console.log(error))
-   
-  axios.get(`http://${localhost.value}/api/posts/${props.postId}/comments`)
-.then(response => {props.comments = response.data
-}
-)
-.catch(error => console.log(error))
-
-  function returnPostImage(userId,postId) {
+  .then(response => {user.value = response.data})
+  .catch(error => console.log(error))
+  */
+ 
+function returnPostImage(userId,postId) {
      return(`http://${localhost.value}/api/${userId}/posts/${postId}/image`);
 
   }
-         
+   
   function returnAvatar(userId){
-
-
-    return(`http://${localhost.value}/api/static/${userId}/avatar`)
-    // else return(`http://${localhost.value}/api/defaultUser/avatar`)
   }
 
- 
+  /*
+ async function returnAvatar(userId){
+    await axios.get(`http://${localhost.value}/api/users/${userId}`)
+        .then(response => {
+            return(`http://${localhost.value}/api/images/${response.data.avatar}`)
+        })
+        .catch(e=>console.log(e))
+  }
+
+ */
+
                                                          
 
   function addComment(e) {

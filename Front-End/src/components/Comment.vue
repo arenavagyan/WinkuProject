@@ -39,15 +39,11 @@
 
   const userName = ref('')
 
-  axios.get(`http://${localhost.value}/api/users/${props.userId}`)
-    .then(response => {
-      userName.value = response.data.name
-    })
-    .catch(error => console.log(error))
 
-  function returnAvatar(userId) {
-    return (`http://${localhost.value}/api/static/${props.userId}/avatar`)
-  }
+
+  // function returnAvatar(userId) {
+  //   return (`http://${localhost.value}/api/static/${props.userId}/avatar`)
+  // }
 </script>
 
 <style scoped>
