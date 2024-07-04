@@ -4,6 +4,7 @@ use App\Http\Middleware\CorsMiddleware;
 use App\Models\Follow;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Image;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
@@ -124,9 +125,10 @@ Route::get('/static/{user_id}/images/{file}', function($user_id,$file) {
     return $response;
 });
 
-Route::get('/static/{user_id}/avatar', function($user_id) {
-    $user = User::find($user_id);
-    $file = File::get(public_path() . "/image/{$user_id}/avatar/{$user->avatar}");
+Route::get('/images/{image_uuid}', function($image_uuid) {
+    $image = Image::where('image_uuid',$image_uuid)->first()->name;
+
+    $file = File::get(public_path() . "/image/{$image}");
 
     $response = Response::make($file, 200);
     $response->header("Content-Type", "image/jpg");
@@ -154,10 +156,14 @@ Route::get('/posts/{post_id}/comments',function ($post_id){
 
 });
 
+Route::get('users/{user_id}/followers', function($user_id){
+    $user = User::find($user_id);
+    return $user->follows;
+});
 // Default User Data --GET
 
-Route::get('defaultUser/avatar',function (){
-    $file = File::get(public_path() . '/image/defaultUser/avatar/defaultUserAvatar.jpg');
+Route::get('defaultUser',function (){
+    $file = File::get(public_path() . '/image/defaultUserAvatar.jpg');
 
     $response = Response::make($file,200);
     $response->header("Content-Type", "image/jpg");

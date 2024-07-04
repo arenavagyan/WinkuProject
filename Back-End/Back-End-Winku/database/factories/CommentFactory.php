@@ -19,7 +19,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'postId'=> fake()->numberBetween(1,3),
+            'postId'=> fake()->unique()->numberBetween(1,3),
             'userId'=> fake()->numberBetween(1,15),
             'text' => fake()->text(20),
             'isMainComment'=>fake()->boolean(),
