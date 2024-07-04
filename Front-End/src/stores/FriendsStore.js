@@ -17,7 +17,7 @@ export const useFriendsStore = defineStore('friendsStore',() => {
     
 
       axios.get(`http://${localhost.value}/api/users/${id}`)
-        .then(res => { res = `http://${localhost.value}/api/images/${res.data.avatar}`;
+        .then(res => { res = `http://${localhost.value}/image/${res.data.avatar}`;
                       imgTagRefName.value.src = res })
             
         }
