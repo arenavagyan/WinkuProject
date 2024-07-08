@@ -22,16 +22,14 @@ class DatabaseSeeder extends Seeder
         Image::factory()->count(15)->create();
 
        $users = User::factory()
-            ->count(5)
+            ->count(15)
             ->sequence(
                 ['name' => 'Janice Griffith','email' => 'griffith@gmail.com', 'password' => bcrypt('PASS')],
                 ['name' => 'Sara Gray'],
             )
             ->create();
 
-        Follow::factory()
-            ->count(5)
-            ->create();
+
 
 
 
