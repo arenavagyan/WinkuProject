@@ -18,27 +18,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-        Image::factory()->count(15)->create();
+        Image::factory()->count(20)->create();
 
        $users = User::factory()
             ->count(15)
-            ->sequence(
-                ['name' => 'Janice Griffith','email' => 'griffith@gmail.com', 'password' => bcrypt('PASS')],
-                ['name' => 'Sara Gray'],
-            )
             ->create();
 
 
 
 
 
-        $users->each(function ($user) {
-            Post::factory()->count(3)
-                ->state(new Sequence(['imageUrl'=>'example.jpeg'],
-                            ['imageUrl'=>'istockphoto-1329622588-1024x1024.jpg'],
-                            ['imageUrl'=>'pexels-arshamhaghani-3536991.jpg' ],
-                            ))
+       $users->each(function ($user) {
+            Post::factory()->count(1)
                 ->create(['user_id' => $user->id]);
 
         });

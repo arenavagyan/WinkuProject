@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('imageUrl')->nullable();
             $table->integer('likeCount')->default(0);
             $table->integer('dislikeCount')->default(0);
-            $table->integer('viewCount')->default(1200);
+            $table->integer('viewCount')->default(0);
             $table->integer('commentCount')->default(0);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->boolean('status')->default(0);

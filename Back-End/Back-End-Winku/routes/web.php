@@ -19,8 +19,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/image/{uuid}', function ($uuid) {
     // Fetch the image from the database
-    $image = \App\Models\Image::where('image_uuid', $uuid)->first();
-
+    $image = \App\Models\Image::where('image_uuid', $uuid)->latest()->first();
     if (!$image) {
         abort(404);
     }

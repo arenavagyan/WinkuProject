@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Middleware\CorsMiddleware;
 use App\Models\Follow;
 use App\Models\Post;
@@ -17,10 +18,6 @@ Route::middleware([CorsMiddleware::class])->group(function () {
                return App\Models\User::all();
     });
 
-Route::get('/followers', function () {
-              return Follow::all();
-
-});
 
 Route::get('{user_id}/posts', function ($user_id) {
     $user = User::find($user_id);
@@ -29,7 +26,7 @@ Route::get('{user_id}/posts', function ($user_id) {
         $result[] = [
             'userName' => $user->name,
             'postId' => $post->id,
-            'publishDate' => $post->created_at->diffForHumans(),
+            'createdAt' => $post->created_at->diffForHumans(),
             'photoUrl' => $post->imageUrl,
             'viewCount' => 1200,
             'commentCount' => 52,
@@ -79,7 +76,8 @@ Route::get('users/{user_id}', function ($user_id) {
     $result = [
             'userName' => $user->name,
             'avatar' => $user->avatar,
-
+            'cover'=> $user->cover,
+            'position' => $user->position,
         ]
         ;
 
@@ -90,31 +88,33 @@ Route::get('users/{user_id}', function ($user_id) {
 });
 
 Route::get('/posts', function () {
-    $users = User::all();
-    foreach ($users as $user) {
-    $posts = $user->posts;
+
+    $result = [];
+    $posts = Post::orderBy('id', 'desc')->get();
+
     foreach ($posts as $post) {
         $result[] = [
             'userId' => $post->user_id,
-            'userName' => $user->name,
+            'userName' => User::find($post->user_id)->name,
             'postId' => $post->id,
-            'publishDate' => $post->created_at->diffForHumans(),
-            'photoUrl' => $post->imageUrl,
+            'createdAt' => $post->created_at->diffForHumans(),
+            'imageUrl' => $post->imageUrl,
+            'videoUrl' => $post->videoUrl,
             'viewCount' => $post->viewCount,
             'commentCount' => $post->commentCount,
             'likeCount' => $post->likeCount,
-            'dislikesCount' => $post->dislikeCount,
-            'description'=> $post->description,
+            'dislikeCount' => $post->dislikeCount,
+            'description' => $post->description,
             'comments' => []
-        ]
-        ;
-    }
+        ];
+    };
 
-
+    return $result;
 
 }
-    return  $result;
-});
+
+);
+
 
 Route::get('/static/{user_id}/images/{file}', function($user_id,$file) {
     $file = File::get(public_path() . "/image/{$user_id}/{$file}");
@@ -159,3 +159,9 @@ Route::get('defaultUser',function (){
     $response->header("Content-Type", "image/jpg");
     return $response;
 });
+
+
+
+//Post Requests
+
+Route::post('/posts',[PostController::class,'store']);

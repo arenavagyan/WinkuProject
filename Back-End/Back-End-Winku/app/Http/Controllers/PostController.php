@@ -6,7 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 
-class PostController extends Controller
+class PostController
 {
     /**
      * Display a listing of the resource.
@@ -29,7 +29,29 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $request->validate([
+            'description' => 'required|string|max:255',
+            'user_id' => 'required|integer|exists:users,id',
+            'status' => 'required|integer|between:0,1',
+            'created_at' => 'nullable|date',
+            'photoUrl' => 'nullable|url',
+            'videoUrl' => 'nullable|url',
+            'viewCount' => 'nullable|integer',
+            'commentCount' => 'nullable|integer',
+            'likesCount' => 'nullable|integer',
+            'dislikesCount' => 'nullable|integer',
+            'comments'=>'nullable|array',
+
+        ]);
+
+        $post = new Post();
+        $post->description = $request->description;
+        $post->user_id = $request->user_id;
+        $post->status = $request->status;
+//        $post->created_at = $request->created_at->diffForHumans();
+        $post->save();
+
+        return response()->json($post,201);
     }
 
     /**
