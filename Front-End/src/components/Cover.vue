@@ -1,9 +1,10 @@
 <template>
-    <div id="cover_section" ref="coverSection">
+    <div id="cover_section" ref="covernSection" class="overflow-hidden">
+        <img ref="coverSection" alt="" class="w-full blur-sm">
         <div class="bottom_side">
             <div class="left_side">
                 <a href="">
-                    <img :src="userAvatar" alt="User Avatar" id="user_avatar" class="user_avatar"></a>
+                    <img ref="userAvatarRef" alt="" id="user_avatar" class="user_avatar"></a>
                 <div class="change_image">
                     <form class="edit"><i class="fa fa-camera-retro"></i>
                         <p>Edit Cover Photo</p>
@@ -32,9 +33,27 @@
 
     const userCover = ref('')
 
-    const coverSection = ref(null)
-
+    
     const user_id = ref(1)
+    
+    import {useUserDataStore} from '../stores/UserDataStore.js'
+    import {storeToRefs} from 'pinia'
+    
+    
+    const store = useUserDataStore();
+    const userAvatarRef = ref(null)
+    const coverSection = ref(null)
+  
+  
+  const {returnAvatarUrl,returnCoverUrl} = store
+
+  returnAvatarUrl(userAvatarRef)
+  
+                returnCoverUrl(coverSection)
+                                                            
+
+
+  
     /*
     
     function arrayBufferToBase64(buffer) {
@@ -94,8 +113,7 @@
 <style>
     #cover_section {
         height: 20rem;
-        width: 100%;
-        background-color: #898787;
+        width: 100%;        
         background-size: 100%;
         background-position: top;
         display: flex;
@@ -105,8 +123,10 @@
 
     }
 
-    .user_avatar {
+    #user_avatar {
         border-radius: 50%;
+        width: 10rem;
+        height: 10rem;
         border: 5px solid white;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     }
@@ -182,6 +202,7 @@
 
     .p_followers {
         color: white;
+        text-shadow: 0rem .1rem .5rem black;
     }
 
     @media (max-width:480px) {

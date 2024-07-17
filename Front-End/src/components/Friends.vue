@@ -21,14 +21,14 @@
 
 
 <div v-if="activeTab === 'friends'">
-    <div v-for="(friend, index) in myFriends" :key="index">
-      <FriendItem :url="friend.url" :name="friend.name" :surname="friend.surname" :position="friend.position" />
+    <div v-for="(friend, index) in friends" :key="index">
+      <FriendItem :id="friend.id" :url="friend.avatar" :name="friend.name" :surname="friend.surname" :position="friend.position" />
     </div>
 </div>
 
 <div v-else>
     <div v-for="(friend, index) in friendRequests" :key="index">
-        <FriendRequestItem :url="friend.url" :name="friend.name" :surname="friend.surname" :position="friend.position" />
+        <FriendRequestItem :url="" :name="" :surname="" :position=""/>
       </div>
 </div>
 
@@ -49,8 +49,18 @@
     import {ref} from 'vue'
     import FriendItem from './FriendItem.vue'
     import FriendRequestItem from './FriendRequestItem.vue'
+    import {useFriendsStore} from '../stores/FriendsStore.js'
+    import {storeToRefs} from 'pinia'
+
+    const store = useFriendsStore()
+
+    const {friends} = storeToRefs(store)
+
+    const{returnAvatarUrl} = store
+
+
    
-    let myFriends = ref([
+   /* const myFriends = ref([
         {
             name:"John",
             surname:"Kates",
@@ -95,6 +105,7 @@
             position:"Personal Business",
             url: "http://localhost:5173/src/assets/public/Images/friend-7.jpg"
         }]);
+        */
     
     let friendRequests = ref([
         {

@@ -66,7 +66,7 @@
             </a>
         </li>
         <li class="li_shortcut">
-            <a href="/landingPage">
+            <a href="/login">
                 <i class="fa-solid fa-power-off "></i>
                 <p class="shortcut">Logout</p>
             </a>

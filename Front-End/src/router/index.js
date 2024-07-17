@@ -24,9 +24,14 @@ const router = createRouter({
       component:() => import('../views/ChatPage.vue')
     },
     {
-      path:'/landingPage',
-      name: 'landingPage',
-      component:() => import('../views/Landing.vue')
+      path:'/login',
+      name: 'login',
+      component:() => import('../views/Login.vue')
+    },
+    {
+      path:'/registration',
+      name:'registration',
+      component:()=> import ('../views/Registration.vue')
     },
     {
       path:'/backendTest',

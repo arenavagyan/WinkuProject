@@ -94,7 +94,7 @@
         <div class="dropdown_menu">
             <div class="image_menu_icon">
                 <div class="user_image">
-                    <a  @click="isIconMenuOpened=!isIconMenuOpened"><img src="../assets/public/Images/user-avatar.jpg" class="user_avatar_header" alt=""></a>
+                    <a  @click="isIconMenuOpened=!isIconMenuOpened"><img ref="userAvatarRef" class="user_avatar_header" alt=""></a>
                     <div v-show="isIconMenuOpened" class="absolute top-[4rem] right-[.5rem] w-[12rem] p-1 bg-white ">
                         <ul class="text-ss">
                             <li class="p-[.5rem] hover:bg-gray-100 hover:text-sky-500"><a href="">Online</a></li>
@@ -148,6 +148,14 @@
     import {
         ref
     } from 'vue';
+    import {userId} from '../main.js'
+    import {useUserDataStore} from '../stores/UserDataStore.js'
+  const userAvatarRef = ref(null)
+  const store = useUserDataStore()
+
+  const {returnAvatarUrl} = store
+
+  returnAvatarUrl(userAvatarRef)
 
     let searchShow = ref(false);
     let langShow = ref(false);

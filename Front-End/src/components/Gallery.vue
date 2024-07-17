@@ -1,8 +1,9 @@
 <template>
     <div class="gallery border rounded-md   ">
         <div class="photos">
-            <div v-for="(photo, index) in userPhotos" key="index" class="user_photos">
-                <img :src="photo.url" alt="Error" class="gallery_image">
+            <div class="user_photos">
+                <img src="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg" class="gallery_image">
+                <img v-for="(photo, index) in userPhotosUrl" key="index" :src="photo" alt="" class="gallery_image">
             </div>
         </div>
 
@@ -21,69 +22,9 @@
         ref
     } from 'vue'
 
-    let userPhotos = ref([{
-            index: 1,
-            url: "https://wpkixx.com/html/winku/images/resources/photo2.jpg"
-        },
-        {
-            index: 2,
-            url: "https://wpkixx.com/html/winku/images/resources/photo3.jpg"
-
-        },
-        {
-            index: 3,
-            url: "https://wpkixx.com/html/winku/images/resources/photo4.jpg"
-        },
-        {
-            index: 4,
-            url: "https://wpkixx.com/html/winku/images/resources/photo5.jpg"
-        },
-
-        {
-            index: 5,
-            url: "https://wpkixx.com/html/winku/images/resources/photo6.jpg"
-        },
-        {
-            index: 6,
-            url: "https://wpkixx.com/html/winku/images/resources/photo7.jpg"
-        },
-        {
-            index: 7,
-            url: "https://wpkixx.com/html/winku/images/resources/photo9.jpg"
-        },
-        {
-            index: 8,
-            url: "https://wpkixx.com/html/winku/images/resources/photo10.jpg"
-        },
-        {
-            index: 9,
-            url: "https://wpkixx.com/html/winku/images/resources/photo11.jpg"
-        },
-        {
-            index: 10,
-            url: "https://wpkixx.com/html/winku/images/resources/photo12.jpg"
-        },
-        {
-            index: 11,
-            url: "https://wpkixx.com/html/winku/images/resources/photo13.jpg"
-        },
-        {
-            index: 12,
-            url: "https://wpkixx.com/html/winku/images/resources/photo3.jpg"
-        },
-        {
-            index: 13,
-            url: "https://wpkixx.com/html/winku/images/resources/photo8.jpg"
-        },
-        {
-            index: 14,
-            url: "https://wpkixx.com/html/winku/images/resources/photo2.jpg"
-        },
-        {
-            index: 15,
-            url: "https://wpkixx.com/html/winku/images/resources/photo5.jpg"
-        },
-    ]);
+    const userPhotosUrl = ref([
+]
+    );
 </script>
 
 <style scoped>
@@ -145,7 +86,10 @@
         color: white;
         transition: .25s !important;
     }
-    .gallery_image:hover{
+    .gallery_image{
+     height: 9rem;
+    }   
+     .gallery_image:hover{
         transform: scale(1.05);
     }
 

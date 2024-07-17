@@ -1,7 +1,7 @@
 <template>
   <div class="friend_item">
     <div class="left_part_friends">
-      <img :src="imageUrl" alt="" class="img_friend">
+      <img ref="friendImage" alt="" class="img_friend">
 
       <div class="friend_name_position">
         <h4 class="friend_name">{{friendName}} {{friendSurname}}</h4>
@@ -11,24 +11,36 @@
 
     <div class="right_part_friends">
       <button class="friend_button">Unfriend</button>
-      <button class="friend_button">Add Friend</button>
     </div>
   </div>
 </template>
 
 <script setup>
+  import {ref} from 'vue'
+
   const props = defineProps({
+    id:Number,
     url: String,
     name: String,
     surname: String,
-    position: String
+    position: String,
+    friendIndex: String
 
   })
 
-  let imageUrl = props.url
-  let friendName = props.name
-  let friendSurname = props.surname
-  let friendPosition = props.position
+  import {useFriendsStore} from '../stores/FriendsStore.js'
+  import {storeToRefs} from 'pinia'
+
+    const store = useFriendsStore()
+    const friendImage =ref(null)
+
+    const{returnAvatarUrl} = store
+
+    returnAvatarUrl(props.id,friendImage)
+
+  const friendName = props.name
+  const friendSurname = props.surname
+  const friendPosition = props.position
 </script>
 
 <style>
@@ -43,13 +55,13 @@
   }
 
   .left_part_friends {
-    width: 62%;
+    width: 80%;
     display: flex;
     padding: 1rem;
   }
 
   .right_part_friends{
-    width: 38%;
+    width: 20%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;

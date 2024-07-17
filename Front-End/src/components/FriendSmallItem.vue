@@ -1,6 +1,6 @@
 <template>
   <div class="friend_item">
-    <img class="img_friend" ref="friendImage">
+    <img class="img_friend mr-2" ref="friendImage">
     <div class="follower_name_section">
       <h4 class="follower_name">{{props.name}}</h4>
       <a class="add_friend">{{props.email}}</a>
@@ -57,9 +57,10 @@
     width: 90%;
     cursor: pointer;
     margin-left: 1rem;
+    border:none
   }
-
-
+   
+  
   .follower_name_section {
     width: 70%;
     display: flex;

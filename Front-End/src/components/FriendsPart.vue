@@ -8,7 +8,7 @@
         <input ref="inputTest" type="search" v-model="inputValue" name="friend" placeholder="Search Contacts..." class="focus:outline-none"
             id="friendSearch" @change="onChange">
         <div class="friend_list">
-            <div v-for="(friend,index) in friends" :key="index" class="friends">
+            <div v-for="(friend,index) in filteredFriends" :key="index" class="friends">
                 <FriendSmallItem :id="friend.id" :name="friend.name" :email="friend.email" :indexImage="index"/>
             </div>
         </div>
@@ -29,18 +29,14 @@
 
     const store = useFriendsStore()
 
-    const {friends} = storeToRefs(store)
+    const {friends,filteredFriends} = storeToRefs(store)
 
-    const {returnAvatarUrl} = store
 
 
     const inputValue = ref('')
 
-    let inputTest = ref(null)
- 
-    let filteredFriends = ref([...friends.value])
-    
-    
+    const inputTest = ref(null)
+
 
      watch(inputValue, () => {
         onSearchFriends()
@@ -52,6 +48,7 @@
             filteredFriends.value = [...friends.value]
         } else {
             filteredFriends.value = [...friends.value.filter(elem => elem.name.toLowerCase().includes(inputValue.value.toLowerCase()))]
+
         }
      }
 

@@ -3,16 +3,19 @@
 
         <div class="new_post_window bg-white px-3 py-5 rounded border">
             <div class="new_post bg-white">
-                <img :src=returnImageUrl(1,user-avatar) alt="" class="user_avatar">
-                <form v-if="!newImageUrl" action="" method="post" class="new_post_form border " @keydown.enter="addPost"
+                <img class="user_avatar rounded-full w-10 h-10" ref="userAvatarRef">
+                <form v-if="!newImageUrl" action="" method="post" class="new_post_form border " @keydown.enter="addPost(Textarea.value)"
                     @change="addImage">
 
 
 
 
-                    <textarea v-model="newPostText" name="" id="" placeholder="write something"
-                        class="textarea placeholder:text-gray-500">
-                                </textarea>
+                    <textarea 
+                              v-model="newPostText"
+                              placeholder="write something"
+                              class="textarea placeholder:text-gray-500" 
+                              ref="Textarea">
+                   </textarea>
                     <ul class="form_ul flex items-center">
 
                         <li>
@@ -55,7 +58,7 @@
                         </li>
 
                         <li>
-                            <input type="submit" value="Post" class="add_post_button" @click="addPost">
+                            <button type="button" class="add_post_button" @click="addPost(Textarea.value)">Post</button>
                         </li>
                     </ul>
                     
@@ -63,13 +66,12 @@
 
                 <!-- Uploaded image form -->
 
-                <form v-else action="" method="post" class="new_post_form border " @keydown.enter="addPost"
+                <form v-else action="" method="post" class="new_post_form border " @keydown.enter="addPost(Textarea.value)"
                     @change="addImage">
 
 
                     <textarea v-model="newPostText" name="" id="" placeholder="write something"
                         class="textarea placeholder:text-gray-500">
-                                </textarea>
 
                     <div class="w-full flex">
                         <img :src="newImageUrl" alt="" class="w-[2rem] h-[2rem] border border-gray-400 m-2">
@@ -117,32 +119,24 @@
                         </li>
 
                         <li>
-                            <input type="submit" value="Post" class="add_post_button" @click="addPost">
+                            <button type="button" class="add_post_button" @click="addPost(Textarea.value)">Post</button>
                         </li>
                     </ul>
+                </textarea>
                 </form>
 
 
             </div>
         </div>
 
-<!-- <img :src="imageSrc" alt=""> -->
 
 
-        <div v-for="(post,index) in posts" :key="index" class="w-full mb-4">
+        <div  class="w-full mb-4">
 
-            <div v-if="post.viewCount == 0">
-                <Post :userId="post.userId" :postId="post.postId" :userName="post.userName" :publishDate="post.publishDate" :photoUrl="post.photoUrl"
+                <NewPostItem v-for="(post,index) in posts" :key="index" :userId="post.userId" :userName="post.userName" :postId="post.postId" :createdAt="post.createdAt" :photoUrl="post.imageUrl"
                     :videoUrl="post.videoUrl" :viewCount="post.viewCount" :commentCount="post.commentCount"
-                    :likeCount="post.likeCount" :dislikesCount="post.dislikesCount" :description="post.description"
-                    :comments="post.comments" />
-            </div>
-            <div v-else>
-                <NewPostItem :userId="post.userId" :postId="post.postId" :userName="post.userName" :publishDate="post.publishDate" :photoUrl="post.photoUrl"
-                    :videoUrl="post.videoUrl" :viewCount="post.viewCount" :commentCount="post.commentCount"
-                    :likeCount="post.likeCount" :dislikesCount="post.dislikesCount" :description="post.description"
-                    :comments="post.comments" />
-            </div>
+                    :likeCount="post.likeCount" :dislikeCount="post.dislikeCount" :description="post.description"
+                    :comments="post.comments" class="mb-4"/>
 
         </div>
 
@@ -152,271 +146,36 @@
 
 <script setup>
     import {localhost} from '../main.js'
-    import Post from './Post.vue'
     import NewPostItem from './NewPostItem.vue'
-    import {ref} from 'vue'
-    import axios from 'axios'
-     
-  
-    /*Last Change
-    
-    const nowDate = ref('')
-
-    const newImageUrl = ref('')
-    
-
-    const newPostText = ref('')
-
-    const posts = ref([])
-
- /* const posts = ref([
-        {
-            userName: "Janice Griffith",
-            postId: 2,
-            publishDate: "2/6/2018, 19:27:07 PM",
-            photoUrl: "https://wpkixx.com/html/winku/images/resources/user-post.jpg",
-            viewCount: 1200,
-            commentCount: 52,
-            likeCount: 2200,
-            dislikeCount: 200,
-            description: "World's most beautiful car in Curabitur #test drive booking ! the most beatuiful car available in america and the saudia arabia, you can book your test drive by our official website",
-            comments: [{
-                    date: '1 year ago',
-                    commentId: 1,
-                    userId: 1,
-                    userName: 'Jason Borne',
-                    imageUrl: 'https://wpkixx.com/html/winku/images/resources/comet-1.jpg',
-                    text: 'we are working for the dance and sing songs. this car is very awesome for the youngster. please vote this car and like our post',
-                    mainComment: true,
-                    repliedCommentIds: [2, 3]
-                },
-                {
-                    date: '1 month ago',
-                    commentId: 2,
-                    userId: 2,
-                    userName: 'Alexendra Dadrio',
-                    imageUrl: 'https://wpkixx.com/html/winku/images/resources/comet-2.jpg',
-                    text: 'yes, really very awesome car i see the features of this car in the official website of #Mercedes-Benz and really impressed :-)',
-                    mainComment: false,
-                    childComment: true
-
-                },
-                {
-                    date: '16 days ago ',
-                    commentId: 3,
-                    userId: 3,
-                    userName: 'Olivia',
-                    imageUrl: 'https://wpkixx.com/html/winku/images/resources/comet-3.jpg',
-                    text: 'i like lexus cars, lexus cars are most beautiful with the awesome features, but this car is really outstanding than lexus',
-                    mainComment: false,
-                    childComment: true
-
-
-                },
-                {
-                    date: '1 week ago',
-                    commentId: 4,
-                    userId: 1,
-                    userName: 'Donald Trump',
-                    imageUrl: 'https://wpkixx.com/html/winku/images/resources/comet-3.jpg',
-                    text: 'we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel ',
-                    mainComment: true,
-                    repliedCommentIds: []
-
-
-                }
-            ]
-        },
-
-
-
-        {
-            userName: "Sara Gray",
-            postId: 1,
-            publishDate: "2/6/2018, 19:27:07 PM",
-            videoUrl: "https://www.youtube.com/embed/_-StQsHSTz0?si=sF1pYCqHyBKNleeh",
-            viewCount: 1200,
-            commentCount: 52,
-            likeCount: 2200,
-            dislikeCount: 200,
-            description: "Lonely Cat Enjoying in Summer Curabitur #mypage ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc,",
-            comments: [{
-                    date: '1 year ago',
-                    commentId: 5,
-                    userId: 1,
-                    userName: 'Jason Borne',
-                    imageUrl: 'https://wpkixx.com/html/winku/images/resources/comet-1.jpg',
-                    text: 'we are working for the dance and sing songs. this car is very awesome for the youngster. please vote this car and like our post',
-                    mainComment: true,
-                },
-                {
-                    date: '1 week ago',
-                    commentId: 4,
-                    userId: 1,
-                    userName: 'Sophia',
-                    imageUrl: 'https://wpkixx.com/html/winku/images/resources/comet-2.jpg',
-                    text: 'we are working for the dance and sing songs. this video is very awesome for the youngster. ',
-                    mainComment: true,
-
-
-                }
-            ]
-        }
-
-
-    ])*/
-
-  
-/*
-axios.get(`http://${localhost.value}/api/posts`)
-         .then(response => {posts.value = response.data
-
-              //Adding comments to each post
-
-               posts.value.forEach(element => {
-                  axios.get(`http://${localhost.value}/api/posts/${element.postId}/comments`)
-                  .then(response => {element.comments = [...response.data];
-            
-                  })
-                  .catch(error => console.log(error))
-                  
-               });
-                                               })
-              .catch(error => console.log(error))
-  
-
-function returnImageUrl(userId,imageName){
-    return (`http://${localhost.value}/api/static/${userId}/avatar`)
-}
-
-
-//  function arrayBufferToBase64(buffer) {
-//   let binary = '';
-//   const bytes = new Uint8Array(buffer);
-//   const len = bytes.byteLength;
-//   for (let i = 0; i < len; i++) {
-//     binary += String.fromCharCode(bytes[i]);
-//   }
-//   return window.btoa(binary);
-// }
-
-//  function fetchAndConvertUserAvatar(imageName) {
-//           axios.get(`http://127.0.0.1:8000/api/static/${user_id.value}/avatar`, {
-//         responseType: 'arraybuffer'
-//       })
-//       .then(response => {
-//         const base64String = arrayBufferToBase64(response.data);
-//         userAvatar.value = `data:image/jpeg;base64,${base64String}`;
-       
-//       })
-//       .catch(error => {
-//         console.error('Error fetching the image:', error);
-//       });
-
-//     }
-
-//  fetchAndConvertUserAvatar('user-avatar.jpg')
-
-
-
-    function addPost(e) {
-        e.preventDefault();
-        nowDate.value = new Date()
-
-        if (newPostText.value && !newImageUrl.value) {
-
-
-            posts.value.unshift(
-
-                {
-                    userName: "Kate Gray",
-                    postId: posts.value.length + 1,
-                    publishDate: nowDate.value.toLocaleString(),
-                    photoUrl: "",
-                    viewCount: 0,
-                    commentCount: 0,
-                    likeCount: 0,
-                    dislikeCount: 0,
-                    description: newPostText.value,
-                    comments: [{}]
-
-                }, )
-        } 
-        else if (newPostText.value && newImageUrl.value) {
-
-
-            posts.value.unshift(
-
-                {
-                    userName: "Kate Gray",
-                    postId: posts.value.length + 1,
-                    publishDate: nowDate.value.toLocaleString(),
-                    photoUrl: newImageUrl.value,
-                    viewCount: 0,
-                    commentCount: 0,
-                    likeCount: 0,
-                    dislikeCount: 0,
-                    description: newPostText.value,
-                    comments: [{}]
-
-                }, )
-        }
-        else if (!newPostText.value && newImageUrl.value){
-                 posts.value.unshift(
-        {
-        userName: "Kate Gray",
-        postId: posts.value.length + 1,
-        publishDate: nowDate.value.toLocaleString(),
-        photoUrl: newImageUrl.value,
-        viewCount: 0,
-        commentCount: 0,
-        likeCount: 0,
-        dislikeCount: 0,
-        description:"",
-        comments: [{}] 
-        }, )
-
-        }
-
-      ;
-
-        newPostText.value = ""
-        newImageUrl.value = ""
-
-    }
-
-    function addImage(e) {
-
-    const image = e.target.files[0];
-      if(image){
-        const reader = new FileReader();
-        reader.readAsDataURL(image);        
-        reader.onload = e => {
-            newImageUrl.value = e.target.result
-        } 
-    }
-      else {
-
-    }
-}
-
-*/
-
-
-  //New with pinia
-    
-  import {usePostStore} from '../stores/PostStore.js'
-  import {storeToRefs} from 'pinia'
+    import {ref,watch} from 'vue'
+    import axios from 'axios'  
+    import {usePostStore} from '../stores/PostStore.js'
+    import {storeToRefs} from 'pinia'
 
   const store = usePostStore();
+  const userAvatarRef = ref(null)
+  const Textarea = ref(null)
+  const {posts,userAvatar,newPostText} = storeToRefs(store)
+  const {returnAvatarUrl,addPost,addImage} = store
 
+  returnAvatarUrl(userAvatarRef)
   
-  const {posts,userAvatar} = storeToRefs(store)
-  const {returnImageUrl,addPost,addImage} = store
-  
+  const handleImageChange = (event) => {
+  const file = event.target.files[0]
+  if (file) {
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      newImageUrl.value = e.target.result
+    }
+    reader.readAsDataURL(file)
+  }
+}
+
+
 </script>
 
 <style scoped>
+
     .news_feed {
         background-color: transparent;
         display: flex;
@@ -434,8 +193,7 @@ function returnImageUrl(userId,imageName){
     }
 
     .user_avatar {
-        width: 3rem;
-        border-radius: 50%;
+    
         margin-right: .7rem;
     }
 
@@ -444,6 +202,8 @@ function returnImageUrl(userId,imageName){
         display: flex;
         align-items: start;
     }
+
+
 
     textarea {
         width: 100%;
@@ -467,13 +227,15 @@ function returnImageUrl(userId,imageName){
         justify-content: space-around;
     }
 
-    ul li input {
+    ul li button {
         background-color: var(--blue2);
         color: var(--white);
         padding: .3rem .9rem;
         border-radius: .1rem;
         font-size: .7rem;
         border: none !important;
+        width: 3.5rem;
+        cursor: pointer;
     }
 
     textarea::placeholder {
@@ -506,6 +268,7 @@ function returnImageUrl(userId,imageName){
         .textarea {
             height: 12rem;
             font-size: 2.9rem;
+            
         }
 
         .new_post_window {
@@ -527,6 +290,7 @@ function returnImageUrl(userId,imageName){
             height: 3rem;
             width: 3rem;
             margin-right: 2rem;
+
         }
 
         .add_post_button {
@@ -534,8 +298,9 @@ function returnImageUrl(userId,imageName){
             padding: 1rem 2rem;
         }
 
+
         .form_ul {
-            width: 60%;
+            width: 10rem;
         }
 
         .new_post_form {
@@ -555,6 +320,7 @@ function returnImageUrl(userId,imageName){
         }
 
         .new_post_window {
+            width: 95%;
             padding: 3rem;
             margin-bottom: 2rem;
 
@@ -565,26 +331,27 @@ function returnImageUrl(userId,imageName){
         }
 
         .textarea::placeholder {
-            font-size: 2.9rem;
+            font-size: 2rem;
             padding-left: 1rem;
         }
 
         .new_post_window svg {
-            height: 3rem;
-            width: 3rem;
-            margin-right: 2rem;
+            height: 2rem;
+            width: 2rem;
+            
         }
 
         .add_post_button {
-            font-size: 2rem;
-            padding: 1rem 2rem;
+            font-size: 1rem;
+            padding: .5rem 1rem;
         }
 
         .form_ul {
-            width: 60%;
+            width:90%
         }
 
         .new_post_form {
+            width: 90%;
             padding: 1rem;
             border: 1px solid rgb(238, 224, 224);
         }

@@ -2,15 +2,15 @@
     <div class="max-[720px]:flex-col min-[720px]:h-[62rem] min-[1024px]:h-[150vh] min-[1400px]:h-[100vh]
                 max-[1025px]:w-full
                 landing w-full flex justify-between items-center h-[40rem]">
-        <div class="max-[720px]:w-full  blue_part bg-[#1fb6ff] w-1/2 h-full flex-col justify-center">
+        <div class="max-[720px]:w-full  blue_part bg-[#1fb6ff] w-1/2 h-full flex-col justify-center pb-32">
             <div class="max-[720px]:p-[3rem]   w-full flex-col pt-[7.5rem]">
                 <h1 class="text-white text-[2.5rem] font-[hobo] text-center">Winku</h1>
-                <p class=" text-xs text-white text-center">Winku is free to use for as long as you want with two active
+                <p class="winku_text text-xs text-white text-center">Winku is free to use for as long as you want with two active
                     projects.</p>
                 <div
                     class="icon w-[9rem] h-[9rem] bg-[#0a98dc] rounded-full flex items-center justify-center m-auto mt-[4rem]">
                     <div class="icon w-[7.3rem] h-[7.3rem] bg-sky-600 rounded-full flex items-center justify-center">
-                        <img src="https://wpkixx.com/html/winku/images/wink.png" alt="">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyQUI0MzQ2Q0I1OTBFODExODM1Nzk4NEM1RUJCNkQwMCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFRDlFQkM5QzkxNDUxMUU4QjlCM0ZCQTg2NEY1REZGOCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFRDlFQkM5QjkxNDUxMUU4QjlCM0ZCQTg2NEY1REZGOCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjJFQjQzNDZDQjU5MEU4MTE4MzU3OTg0QzVFQkI2RDAwIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjJBQjQzNDZDQjU5MEU4MTE4MzU3OTg0QzVFQkI2RDAwIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+lQ06lgAAAotJREFUeNqkU79rVEEQ/mZ337vLJeTHiZeghSEmGtQUErWQqI0ExFIhjTb+A5G0KsHGSlBJq5UiJxaCP9KKSEoVhNgYwUIxMYlncne53L23M85eLghps7DsvN2Z75v5Zh6JCHazDHa5XOf9T00j5JGBR6JGHVaRRTeBdWeN3jNNVNJc79fBxzODPZ8FPotL367AkfhtsOEG6BZBph1kQU8NZFgCUsHZGtuiWnhaHlo6JdlnG2kO8408XK7pJKiyfVD2djwmvwLwZKSBHSbRXMRuiB3PGHNbqP5j+vfJYSyetpqYt7YO12YZyoiGmHllHY9Ivgf2wJyxRk+SJMVNywwhQq+ropRa6nCsBdusqabAhheI+KmYeCxvG/cKitxOCdZTpQGxtDQKugSQrsiLkoyxyLwTMkh0i7rp5Rzr0ypnkOiXVQmDqCJbkmYp3Jog7IV1b2djIxUTnupsEBlCmxUs+gz+ctTkjFUbVitsCidR/yabJ2XvZkMmTviuS4UuKutixvIHFqeMCkbSHJCghQYe0QrPayeuVrw7wU0oNH1ylmccxZm+zZp/vZpGy3q/oDqsBAcF6kthBjzTnu0M0NIh1a8cfDEC/3G9qD2y+cLI0nJpMra0N6gfBPOBX6g1UP9XyMmoQ0zpVF1TM8mdCRR+fryeP3j4pVchBVv/BrXYdi4tBV0uedgd41d7pG325TWTfHkvPYeOF/2Bkf21tdKoUYFoR2CACh2KDb/NR3zZhs6FTm3qW7VaQee7Isy+gVfSf4ykXjujYhluNk3L0UDFDHM/1+HonJCDjrYOn90iMsaimz3M0CjsjedI1kqFxMs1VeGoTqiLiKs5I2+U80VD5zajQnGrun8CDACV7TI3vbfwBwAAAABJRU5ErkJggg==" alt="">
                     </div>
                 </div>
                 <a class="w-full flex justify-center mt-[3.4rem] text-white">Follow Us On</a>
@@ -22,86 +22,48 @@
                     max-[720px]:w-[40rem] max-[720px]:p-[2rem] max-[720px]:w-full 
                     bg-white w-1/2 h-full flex justify-center items-center">
 
-            <form class="login_form max-[480px]:w-full  max-[720px]:w-[35rem] login p-8 w-[25rem]" v-if="pageStatus">
-
-
-                <h1 class="text-[2rem] text-gray-600 font-bold">Login</h1>
-                <p class="text-ss text-gray-400 mt-[1rem] mb-[3rem]">Don’t use Winku Yet? <a
-                        class="text-sky-500 cursor-pointer">Take the tour</a> or <a
-                        class="text-sky-500 cursor-pointer">Join now</a></p>
-
-                <input type="text" placeholder="Username" class="m-[.5rem] border-b w-full p-1 focus:outline-none" required>
-                <input type="password" placeholder="Password" class="m-[.5rem] border-b w-full p-1 focus:outline-none" required>
-
-
-
-                <div class=" w-full flex justify-between items-center">
-
-                    <div class="checkbox-wrapper-27 mt-6">
-                        <label class="checkbox flex items-center">
-                            <input type="checkbox">
-                            <span class="checkbox__icon">
-                            </span>
-                            <span class="text-s text-gray-500"> Always Remember Me
-                            </span>
-                        </label>
-                    </div>
-                    <a class="text-sky-500 text-ss">Forget Password?</a>
-
-                </div>
-
-
-                <div class="flex">
-                    <button
-                        class="py-2 bg-[#4f93ce] text-white rounded-md text-[.8rem] font-bold px-[1.5rem] my-[1rem] mx-[.2rem]">Login</button>
-                    <button
-                        class="py-2 bg-[#4f93ce] text-white rounded-md text-[.8rem] font-bold px-[1.5rem] my-[1rem] mx-[.2rem]"
-                        @click="pageStatus=!pageStatus">Register</button>
-                </div>
-            </form>
 
             <!-- Registration -->
 
-            <form class="max-[480px]:w-[7rem] max-[720px]:w-[16rem] login registration_form p-8 w-[25rem]" v-else>
+            <form class="max-[480px]:w-[9rem] max-[720px]:w-[16rem] login registration_form p-8 w-[25rem]">
                 <h1 class="text-[2rem] text-gray-600 font-bold">Register</h1>
                 <p class="text-ss text-gray-400 mt-[1rem] mb-[3rem]">Don’t use Winku Yet? <a
                         class="text-sky-500 cursor-pointer">Take the tour</a> or <a
                         class="text-sky-500 cursor-pointer">Join now</a></p>
 
-                <input v-model="registrationData.name_lastname" type="text" placeholder="First & Last Name"
+                <input v-model="name" type="text" placeholder="First & Last Name"
                     class="m-[.5rem] border-b w-full p-1 focus:outline-none">
-                <input v-model="registrationData.username" type="text" placeholder="User Name"
-                    class="m-[.5rem] border-b w-full p-1 focus:outline-none">
-                <input v-model="registrationData.password" type="password" placeholder="Password"
+               
+                <input v-model="password" type="password" placeholder="Password"
                     class="m-[.5rem] border-b w-full p-1 focus:outline-none">
 
                 <div class="flex w-[10rem] mt-[1.5rem] ">
                     <div class="flex items-center ml-[1rem] text-gray-500"><input type="radio" name="same"
-                            class="scale-150" @click="registrationData.male_female='male'">
-                        <p class="text-[.63rem] m-1">Male</p>
+                            class="scale-150" @click="male_female=true">
+                        <p class="text-[.63rem] ml-[1rem]">Male</p>
                     </div>
-                    <div class="flex items-center ml-[1rem] text-gray-500"><input type="radio" name="same"
-                            class="scale-150" @click="registrationData.male_female='female'">
-                        <p class="text-[.63rem] m-1">Female</p>
+                    <div class="flex items-center ml-[2rem] text-gray-500"><input type="radio" name="same"
+                            class="scale-150" @click="male_female=false">
+                        <p class="text-[.63rem] ml-[1rem]">Female</p>
                     </div>
                 </div>
 
-                <input v-model="registrationData.email" type="password" placeholder="E-mail"
-                    class="m-[.5rem] mt-[1rem] border-b w-full p-1 focus:outline-none">
+                <input v-model="email" type="email" placeholder="E-mail"
+                    class="email_input m-[1rem]  border-b w-full focus:outline-none">
 
 
                 <div class=" w-full flex-col">
 
                     <div class="checkbox-wrapper-27 mt-2">
                         <label class="checkbox flex items-center">
-                            <input type="checkbox">
-                            <span class="checkbox__icon">
+                            <input type="checkbox" @click="accept_button=!accept_button">
+                            <span class="checkbox__icon ml-[1rem]">
                             </span>
-                            <span class="text-s text-gray-500">Accept Terms & Conditions ?
-                            </span>
+                            <a class="text-gray-500 text-[.8rem]">Accept Terms & Conditions ?
+                            </a>
                         </label>
                     </div>
-                    <a class="text-sky-500 text-ss mt-[2rem] ml-[2rem]">Already have an account</a>
+                    <a class="text_already text-sky-500 text-[.7rem] ml-[1rem] mt-[1rem]" href="/login">Already have an account</a>
 
                 </div>
 
@@ -109,7 +71,7 @@
                 <div class="flex">
 
                     <button
-                        class="py-2 bg-[#4f93ce] text-white rounded-md text-[.8rem] font-bold px-[1.5rem] my-[1rem] mx-[.2rem]"
+                        class=" log_reg_btn py-2 bg-[#4f93ce] text-white rounded-md text-[.8rem] font-bold px-[1.5rem] my-[1rem] mx-[.2rem]"
                         @click="register">Register</button>
                 </div>
             </form>
@@ -122,42 +84,17 @@
     import {
         ref
     } from 'vue'
+    import {useRegistrationStore} from '../stores/RegistrationStore.js'  
+    import {storeToRefs} from 'pinia'
+    const store = useRegistrationStore();
+    const {name,email,password,male_female,accept_button} = storeToRefs(store)
+    const {register} = store
 
-    const registrationData = ref({
-        name_lastname: '',
-        username: '',
-        password: '',
-        email: '',
-        male_female: ''
+  
+  
 
-    })
-
-    const pageStatus = ref('login')
-
-    function register(e) {
-
-        e.preventDefault();
-        console.log(registrationData.value);
-
-    }
+    
 </script>
-
-
-<style>
-
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <style scoped>
     .login {
@@ -209,6 +146,9 @@
     .checkbox-wrapper-27 .checkbox__icon:before {
         content: "\e600";
     }
+    label{
+        margin-bottom: 1rem;
+    }
 
     @font-face {
         font-family: "icons-27";
@@ -218,6 +158,9 @@
     }
 
     @media (max-width: 480px){
+        .winku_text{
+            font-size: 2rem;
+        }
         .landing{
             flex-direction: column;
         }
@@ -229,32 +172,18 @@
             margin-top: 2rem;
             width: 100%;
         }
-
-        .login_form {
-            width: 70%;
-        }
-        .login_form p,a{
-            font-size: 1.5rem;
-        }
-        .login_form span{
-            font-size: 1.2rem;
-        }
-        .login_form h1{
-            font-size: 2.9rem;
-        }
-        .login_form input::placeholder{
-            font-size: 1.5rem;
-            padding: 1rem;
+        a{
+            font-size: 3.5rem !important;
         }
       
-
         .registration_form {
-            width: 70%;
+            width: 90%;
             margin-top: 4rem;
         }
-        .registration_form p,a{
+        .registration_form p{
             font-size: 1.5rem;
         }
+        
         .registration_form span{
             font-size: 1.2rem;
         }
@@ -271,8 +200,13 @@
     }
 
     @media (min-width: 480px) and (max-width:1024px) {
+
         .landing{
             flex-direction: column;
+        }
+        .winku_text{
+            font-size: 1.7rem;
+            font-style: italic;
         }
         .blue_part{
             width: 100%;
@@ -283,8 +217,39 @@
             width: 100%;
         }
 
-        .login_form {
-            width: 60%;
+       
+        .log_reg_btn{
+            
+            font-size: 2rem;
+            font-weight: normal;
+            margin: 2rem .5rem; 
+
         }
+
+        .registration_form {
+            width: 90%;
+            margin-top: 4rem;
+        
+        }
+        .registration_form p{
+            font-size: 2rem;
+        }
+        
+        .registration_form span{
+            font-size: 1.2rem;
+        }
+        .registration_form h1{
+            font-size: 2.9rem;
+        }
+        .registration_form input,.email_input::placeholder{
+            font-size: 2rem;
+            
+        }
+        .text_already{
+            font-size: 1.5rem;
+            padding-top: 2rem;
+        
+        }
+        
     }
 </style>

@@ -16,12 +16,12 @@
                       <ProfileIntro class="ProfileIntro" />
                     </div>
 
-                    <Friends class="Friends" />
+                    <Friends class="Friends w-4/12"/>
 
-                    <div class="flex-col w-4/12">
-                      <Following class="Following" />
-                      <FriendsPart class="FriendsPart" />
-                    </div>
+                    <!-- <div class="flex-col w-4/12">
+                       <Following class="Following" /> 
+                       <FriendsPart class="FriendsPart" /> 
+                    </div> -->
 
                   </div>
 
@@ -56,7 +56,8 @@
     width: 100%;
     display: flex;
     flex-direction:row;
-    align-items: start;
+    align-items: center;
+    justify-content: center;
     margin-top: 1.7rem;
   }
   .ProfileIntro{

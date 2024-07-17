@@ -18,7 +18,7 @@
         <Gallery class="Gallery" />
                  
          <div class="flex-col w-4/12">
-             <Following class="Following" />
+             <!-- <Following class="Following" /> -->
          <FriendsPart class="FriendsPart" />
          </div>
      </div>

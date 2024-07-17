@@ -4,11 +4,11 @@
     <!-- HEADER -->
 
     <div class="flex">
-      <!-- <img :src="returnAvatar(props.userId)" alt=""
-        class="user_avatar rounded-full w-9 h-auto m-2"> -->
+       <img ref="postAuthorAvatarRef" alt=""
+        class="user_avatar rounded-full w-10 h-10 m-2"> 
       <div class="w-full">
         <h6 class="user_name w-full text-xs text-cyan-600 ml-2 mt-2">{{props.userName}}</h6>
-        <p class="date text-s ml-2 text-gray-500">Published: {{props.publishDate}}</p>
+        <p class="date text-s ml-2 text-gray-500">Published: {{props.createdAt}}</p>
       </div>
     </div>
 
@@ -19,7 +19,7 @@
       </iframe>
     </div>
     <div v-else class="flex justify-center">
-      <!-- <img :src="returnPostImage(props.userId,props.postId)" alt="" class="w-11/12"> -->
+      <img ref="userAvatarRef" alt="" class="w-11/12">
     </div>
     <div class="description_box w-full">
       
@@ -73,7 +73,7 @@
           <path
             d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z" />
         </svg>
-        <ins class="text-s no-underline">{{props.dislikesCount}}</ins>
+        <ins class="text-s no-underline">{{props.dislikeCount}}</ins>
       </div>
 
       <a
@@ -88,7 +88,8 @@
 
 
     <!-- COMMENTS -->
-<!--<div class="pt-[1rem]" v-if="props.comments">
+     <!-- 
+<div class="pt-[1rem]" v-if="props.comments">
       <div v-for="(comment,index) in props.comments" :key="index" class="w-full com">
         <div v-for="(com,index) in comment" :key="index" class="w-full com">
 
@@ -112,21 +113,17 @@
       </div>
       </div>
     </div> 
-    -->
+     -->
     
 
     <!-- ADD COMMENTS -->
 
     <div class="w-full flex justify-center items-center p-2">
-      <div v-if="returnAvatar(props.userId)">
-      <img :src="returnAvatar(props.userId)" alt=""
-        class="user_avatar rounded-full w-7 h-auto mr-1 mt-2"> 
+      <div>
+      <img ref="userAvatarRef" alt=""
+        class="user_avatar rounded-full w-8 h-8 h-auto mr-1 mt-2"> 
       </div>
-      <div v-else>
-        <img src="http://localhost:81/api/defaultUser"
-        class="user_avatar rounded-full w-7 h-auto mr-1 mt-2"> 
-
-      </div>
+      
       <form action="" method="post" class="w-full ml-1 mt-2 ">
         <input type="text"
           class="comment_input rounded-sm w-full bg-gray-100 text-ss p-2 placeholder:text-gray-500 focus:outline-none active:outline-none"
@@ -142,60 +139,48 @@
   import {ref,nextTick} from 'vue'
   import axios from 'axios'
   import {localhost} from '../main.js'
- 
+  import {usePostStore} from '../stores/PostStore.js'
+  import {storeToRefs} from 'pinia'
+  
   const props = defineProps({
     userId:Number,
+    userName:String,
     postId:Number,
-    userName: String,
-    publishDate: String,
+    description: String,
+    createdAt: String,
     photoUrl: String,
     videoUrl: String,
     viewCount: Number,
     commentCount: Number,
     likeCount: Number,
-    dislikesCount: Number,
-    description: String,
+    dislikeCount: Number,
     comments: Array
   })
+
 
   const defaultUserAvatar = ref(null)
   const user = ref([])
   const postId = ref(0)
   const comment = ref([])
+  const userAvatarRef = ref(null)
+  const postAuthorAvatarRef = ref(null)
+  const store = usePostStore()
+  const {userName} = storeToRefs(store)
 
-  //  console.log(props.comments);
 
+  const {returnAvatarUrl,returnPostAuthorAvatarUrl} = store
+
+  returnAvatarUrl(userAvatarRef)
+  returnPostAuthorAvatarUrl(props.userId,postAuthorAvatarRef)
   postId.value = props.postId
   
 
-
-  /*
-  
-  axios.get(`http://${localhost.value}/api/users/${props.userId}`)
-  .then(response => {user.value = response.data})
-  .catch(error => console.log(error))
-  */
  
 function returnPostImage(userId,postId) {
      return(`http://${localhost.value}/api/${userId}/posts/${postId}/image`);
 
   }
-   
-  function returnAvatar(userId){
-  }
-
-  /*
- async function returnAvatar(userId){
-    await axios.get(`http://${localhost.value}/api/users/${userId}`)
-        .then(response => {
-            return(`http://${localhost.value}/api/images/${response.data.avatar}`)
-        })
-        .catch(e=>console.log(e))
-  }
-
- */
-
-                                                         
+                                                        
 
   function addComment(e) {
     e.preventDefault();
@@ -225,11 +210,13 @@ function returnPostImage(userId,postId) {
 </script>
 
 <style scoped>
+
+  
   @media (max-width:480px) {
 
     .user_avatar {
-
       width: 5.5rem;
+      
     }
 
     .description {
@@ -337,7 +324,7 @@ function returnPostImage(userId,postId) {
   @media (min-width:480px) and (max-width:1024px) {
 
     .user_avatar {
-
+      height: 5.5rem;
       width: 5.5rem;
     }
 

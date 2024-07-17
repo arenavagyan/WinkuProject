@@ -1,8 +1,8 @@
 <template>
 <div class="menu">
     <div class="user_name">
-        <h6 class="name">{{ userName.name }} {{userName.surname}}</h6>
-        <p class="user_position">{{ userName.position }}</p>
+        <h6 class="name">{{ userName }}</h6>
+        <p class="user_position">{{ position }}</p>
     </div>
     <ul class="ul_menu">
         <li class="li_menu"><a href="">Time Line</a></li>
@@ -18,13 +18,16 @@
 </template>
 
 <script setup>
+import {localhost} from '../main.js'
 import {ref} from 'vue'
+import axios from 'axios'  
+import {useUserDataStore} from '../stores/UserDataStore.js'
+import {storeToRefs} from 'pinia'
 
-let userName = ref({
-    name:"Janice",
-    surname:"Griffith",
-    position:"Group Admin"
-})
+  const store = useUserDataStore();
+  
+  const {userName,position} = storeToRefs(store)
+
 
 </script>
 
