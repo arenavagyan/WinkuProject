@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'avatar' => Image::find($this->faker->numberBetween(1, 15))->image_uuid,
+            'avatar' => Image::find($this->faker->unique()->numberBetween(1, 15))->image_uuid,
             'cover' => Image::find($this->faker->numberBetween(16, 20))->image_uuid,
             'position'=> fake()->jobTitle(),
             'password' => static::$password ??= Hash::make('password'),
